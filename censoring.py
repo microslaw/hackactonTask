@@ -98,8 +98,8 @@ def isABadWord(word:str):
             return True
     return False
 
-def censorWord(word:str):
+def censorWord(word:str, replaceChar:chr ='*'):
     if isABadWord(word):
-        word = word[0] + ('*'*(len(word)-2)) + word[-1]
+        word = word[0] + (replaceChar*(len(word)-2)) + word[-1]
     return word
 
