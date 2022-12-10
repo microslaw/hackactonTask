@@ -1,7 +1,10 @@
 ## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
+* [General info](#General-info)
+* [Used languages and tools](#Used-languages-and-tools)
+* [Setup](#Setup)
+* [Functions](#Functions)
+* [Authors](#Authors)
+
 
 ## General info
 Polish curse word classification using simple heuristic.
