@@ -47,3 +47,27 @@ def deleteDuplicates(word:str):
             noDuplicatesWord+=word[i]
     noDuplicatesWord += word[-1]
     return word
+
+
+def formatEndings(word:str):
+    formatList = {"ana":"any",
+    "anie": "any",
+    "ać": "any",
+    "aż": "any",
+    "ał": "any",
+    "ony": "any",
+    }
+
+    for ending in formatList:
+        if word[-len(ending):] == ending:
+            word = word.rstrip(ending) + formatList[ending]
+    return word
+
+
+def formatWord(word:str):
+    formattedWord = normalizeChars(word)
+    formattedWord = deleteDuplicates(formattedWord)
+    formattedWord = formattedWord.lower()
+    formattedWord = formatEndings(formattedWord)
+    return formattedWord
+
