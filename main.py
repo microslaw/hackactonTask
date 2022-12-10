@@ -24,8 +24,8 @@ def areTwoSwapped(toSwap:str, pattern):
         return True
     return False
 
-def numbersToLetters(word: str):
-    numberLetterPairs = {"1":"i",
+def normalizeChars(word: str):
+    normalizingChars = {"1":"i",
     "3": "e",
     "4": "a",
     "0": "o",
@@ -36,9 +36,10 @@ def numbersToLetters(word: str):
     "rz":"ż",
     "ch":"h"
     }
-    for number in numberLetterPairs:
-        word = word.replace(number, numberLetterPairs[number])
+    for number in normalizingChars:
+        word = word.replace(number, normalizingChars[number])
     return word
+
 
 def deleteDuplicates(word:str):
     noDuplicatesWord = ""
@@ -70,4 +71,36 @@ def formatWord(word:str):
     formattedWord = formattedWord.lower()
     formattedWord = formatEndings(formattedWord)
     return formattedWord
+
+
+def isABadWord(word:str):
+    for badWord in badWordsList:
+        badWord = formatWord(badWord)
+        word = formatWord(word)
+        differencesCount = countDifferences(word, badWord)
+        if differencesCount == 0:
+            return True
+        if differencesCount == 1 and (len(word) -1 == len(badWord)):
+            return True
+        if differencesCount == 2 and (len(word) == len(badWord)):
+            return True
+    return False
+
+
+def readFile(filename:str):
+    lines = []
+    with open(filename, 'r', encoding='utf-8') as rfile:
+        for line in rfile:
+            line = line.strip()
+            words = line.split(" ")                
+            lines.append(words)
+    return lines
+
+
+def censorWord(word:str):
+    if isABadWord(word):
+        word = word[0] + ('*'*(len(word)-2)) + word[-1]
+    return
+
+badWordsList = readFile("badWords.txt")
 
